@@ -45,7 +45,7 @@ async function startProgram() {
             name: 'officeNumberMan',
             message: "What's the Manager's office number?"
         },])
-    await team.push(new Manager(nameMan, idMan, emailMan, officeNumberMan,))
+    team.push(new Manager(nameMan, idMan, emailMan, officeNumberMan))
     let { adding } = await inquirer
         .prompt([{
             type: "list",
@@ -114,7 +114,7 @@ async function generateIntern() {
             message: "What's the Intern's School?"
         },])
 
-    await team.push(new Intern(name, id, email, School));
+    team.push(new Intern(name, id, email, School));
 
     let { adding } = await inquirer
         .prompt([{
@@ -160,7 +160,7 @@ async function generateEngineer() {
             message: "What's the Engineer's github?"
         }])
 
-    await team.push(new Engineer(name, id, email, github))
+    team.push(new Engineer(name, id, email, github))
     let { adding } = await inquirer
         .prompt([{
             type: "list",
