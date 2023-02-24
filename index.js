@@ -16,10 +16,49 @@ const render = require("./src/page-template.js");
 
 let team = [];
 startProgram();
+
+
 async function startProgram() {
-    let newEngineer = new Engineer("Zan", 1222, "csaba@test.com", "CIMSGit");
-    let newIntern = new Intern("Csaba", 1022, "test@internal.com", "UCL");
-    let newManager = new Manager("George", 2200, "gerorge@george.com", 122)
+    let {role,name,id,email,github,School,officeNumber}= await inquirer
+    .prompt([    {
+        type: 'list',
+        name: 'role',
+        message: "What's your role?",
+        choices:["Manager","Intern","Engineer"]
+    },
+    {
+        type: 'input',
+        name: 'name',
+        message: "What's your name?",
+    }, {
+        type: 'input',
+        name: 'id',
+        message: "Your ID?",
+    }, {
+        type: 'input',
+        name: 'email',
+        message: "Email address?",
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: "Github?",
+    },
+    {
+        type: 'input',
+        name: 'School',
+        message: "School?",
+    },
+    
+    {
+        type: 'input',
+        name: 'officeNumber',
+        message: "What is your GitHub username?",
+    },
+    ])
+    let newEngineer = new Engineer(name, id,email, role, github);
+    let newIntern = new Intern(name, id, email, School);
+    let newManager = new Manager(name, id,email, officeNumber, )
 
     team.push(newEngineer, newIntern, newManager)
 
