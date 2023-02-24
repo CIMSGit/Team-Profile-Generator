@@ -17,10 +17,11 @@ const render = require("./src/page-template.js");
 let team = [];
 startProgram();
 async function startProgram() {
-    let newEngineer= new Engineer("Zan",1222,"csaba@test.com","CIMSGit")
+    let newEngineer = new Engineer("Zan", 1222, "csaba@test.com", "CIMSGit");
+    let newIntern = new Intern("Csaba", 1022, "test@internal.com", "UCL");
+    let newManager = new Manager("George", 2200, "gerorge@george.com", 122)
 
-
-    team.push(newEngineer)
+    team.push(newEngineer, newIntern, newManager)
 
     let htmlDoc = render(team)
     await fs.writeFile(outputPath, htmlDoc)
