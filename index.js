@@ -50,7 +50,7 @@ async function startProgram() {
         .prompt([{
             type: "list",
             name: "adding",
-            message: "Do you want to someone else?",
+            message: "Do you want to add someone else?",
             choices: ["Yes", "No"],
         },])
     if (adding === "Yes") {
@@ -120,7 +120,7 @@ async function generateIntern() {
         .prompt([{
             type: "list",
             name: "adding",
-            message: "Do you want to someone else?",
+            message: "Do you want to add someone else?",
             choices: ["Yes", "No"],
         },])
     if (adding === "Yes") {
@@ -165,7 +165,7 @@ async function generateEngineer() {
         .prompt([{
             type: "list",
             name: "adding",
-            message: "Do you want to someone else?",
+            message: "Do you want to add someone else?",
             choices: ["Yes", "No"],
         },])
     if (adding === "Yes") {
