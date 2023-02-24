@@ -15,87 +15,172 @@ const render = require("./src/page-template.js");
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
 let team = [];
+
 startProgram();
 
-
 async function startProgram() {
-    let { name } = await inquirer
-    .prompt([{
-        type: 'input',
-        name: 'name',
-        message: "What's your name?"
-    },])
-    let { id } = await inquirer
-    .prompt([{
-        type: 'input',
-        name: 'id',
-        message: "What's your id?",
-    }])
-    let { email } = await inquirer
-    .prompt([{
-        type: 'input',
-        name: 'email',
-        message: "What's your email?",
-    }])
-    let { role } = await inquirer
-        .prompt([{
-            type: 'list',
-            name: 'role',
-            message: "What's your role?",
-            choices: ["Manager", "Intern", "Engineer"]
-        },])
-  
-  
-   
 
-    if (role === "Manager") {
-        let { officeNumber } = await inquirer
+
+    let { nameMan } = await inquirer
+        .prompt([{
+            type: 'input',
+            name: 'nameMan',
+            message: "What's the Manager's name?"
+        },])
+    let { idMan } = await inquirer
+        .prompt([{
+            type: 'input',
+            name: 'idMan',
+            message: "What's the manager's ID?",
+        }])
+    let { emailMan } = await inquirer
+        .prompt([{
+            type: 'input',
+            name: 'emailMan',
+            message: "What's the Manager' email?",
+        }])
+    let { officeNumberMan } = await inquirer
         .prompt([{
             type: 'input',
             name: 'officeNumber',
-            message: "What's your office number?"
+            message: "What's the Manager's office number?"
         },])
+   await team.push(new Manager(nameMan, idMan, emailMan, officeNumberMan,))
+   let { adding } = await inquirer
+   .prompt([{
+       type: "list",
+       name: "adding",
+       message: "Do you want to someone else?",
+       choices: ["Yes", "No"],
+   },])
+   if (adding=== "Yes"){
+    generateNewEmployee()
+   }
+   else {
+    let htmlDoc = render(team)
+    await fs.writeFile(outputPath, htmlDoc)
+}
+}
 
-        team.push(new Manager(name, id, email, officeNumber,))
 
+async function generateNewEmployee() {
+    
+        let { role } = await inquirer
+            .prompt([{
+                type: 'list',
+                name: 'role',
+                message: "What role would you like to add?",
+                choices: ["Intern", "Engineer"]
+            },]);
+        if (role === "Intern") {
+            generateIntern()
+
+        }
+        if (role === "Engineer") {
+            generateEngineer()
+        }
     }
-    if (role === "Intern") {
-        let { School } = await inquirer
+   
+
+
+
+
+
+
+async function generateIntern() {
+
+    let { name } = await inquirer
+        .prompt([{
+            type: 'input',
+            name: 'name',
+            message: "What's the Intern's name?"
+        },])
+    let { id } = await inquirer
+        .prompt([{
+            type: 'input',
+            name: 'id',
+            message: "What's the Intern's id?",
+        }])
+    let { email } = await inquirer
+        .prompt([{
+            type: 'input',
+            name: 'email',
+            message: "What's the Intern's email?",
+        }])
+    let { School } = await inquirer
         .prompt([{
             type: 'input',
             name: 'School',
-            message: "What's your School?"
+            message: "What's the Intern's School?"
         },])
 
-        team.push(new Intern(name, id, email, School));
-        
+   await team.push(new Intern(name, id, email, School));
 
-    }
-    if (role === "Engineer"){
-        let { github } = await inquirer
+   let { adding } = await inquirer
+   .prompt([{
+       type: "list",
+       name: "adding",
+       message: "Do you want to someone else?",
+       choices: ["Yes", "No"],
+   },])
+   if (adding=== "Yes"){
+    generateNewEmployee()
+   }
+   else {
+    let htmlDoc = render(team)
+    await fs.writeFile(outputPath, htmlDoc)
+}
+}
+
+async function generateEngineer() {
+
+
+    let { name } = await inquirer
+        .prompt([{
+            type: 'input',
+            name: 'name',
+            message: "What's the Engineer's name?"
+        },])
+    let { id } = await inquirer
+        .prompt([{
+            type: 'input',
+            name: 'id',
+            message: "What's the Engineer's id?",
+        }])
+    let { email } = await inquirer
+        .prompt([{
+            type: 'input',
+            name: 'email',
+            message: "What's the Engineer's email?",
+        }])
+    let { github } = await inquirer
         .prompt([{
             type: 'input',
             name: 'github',
-            message: "What's your github?"
+            message: "What's the Engineer's github?"
         }])
-        team.push(new Engineer(name, id, email, role, github));}
-    if (team.push === true) {
 
-    }
-   
-    let { adding } = await inquirer
-        .prompt([{
-            type: "list",
-            name: "adding",
-            message: "Do you want to someone else?",
-            choices: ["Yes", "No"],
-        },])
-
-    if (adding === "Yes") {
-        return startProgram()
-    }
-    else {
-        let htmlDoc = render(team)
-        await fs.writeFile(outputPath, htmlDoc)
-    }
+   await team.push(new Engineer(name, id, email, github))
+   let { adding } = await inquirer
+   .prompt([{
+       type: "list",
+       name: "adding",
+       message: "Do you want to someone else?",
+       choices: ["Yes", "No"],
+   },])
+   if (adding=== "Yes"){
+    generateNewEmployee()
+   }
+   else {
+    let htmlDoc = render(team)
+    await fs.writeFile(outputPath, htmlDoc)
 }
+}
+
+
+
+
+
+
+
+
