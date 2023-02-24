@@ -53,14 +53,20 @@ async function startProgram() {
     {
         type: 'input',
         name: 'officeNumber',
-        message: "What is your GitHub username?",
+        message: "What is your Office number?",
     },
     ])
-    let newEngineer = new Engineer(name, id,email, role, github);
-    let newIntern = new Intern(name, id, email, School);
-    let newManager = new Manager(name, id,email, officeNumber, )
+    if( role === "Manager" ){
+        team.push( new Manager(name, id,email, officeNumber, ))
 
-    team.push(newEngineer, newIntern, newManager)
+    }
+    if(role === "Intern"){
+
+        team.push(new Intern(name, id, email, School));
+
+    }
+    if (role === "Engineer")
+    team.push(new Engineer(name, id,email, role, github));
 
     let htmlDoc = render(team)
     await fs.writeFile(outputPath, htmlDoc)
