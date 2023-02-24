@@ -42,7 +42,7 @@ async function startProgram() {
     let { officeNumberMan } = await inquirer
         .prompt([{
             type: 'input',
-            name: 'officeNumber',
+            name: 'officeNumberMan',
             message: "What's the Manager's office number?"
         },])
    await team.push(new Manager(nameMan, idMan, emailMan, officeNumberMan,))
