@@ -1,3 +1,4 @@
+const Employee = require("./lib/Employee")
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -13,3 +14,15 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+let team = [];
+startProgram();
+async function startProgram() {
+
+    team.push(new Manager("csaba",1222,"csaba@test.com",1222)
+    );
+
+    let htmlDoc = render(team);
+    await fs.writeFile(outputPath, htmlDoc);
+
+}
+// let newEngineer= new Engineer("csaba",1222,"csaba@test.com","CIMSGit")
