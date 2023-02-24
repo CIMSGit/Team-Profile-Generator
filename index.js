@@ -50,19 +50,14 @@ async function startProgram() {
         message: "School?",
     },
     
-    {
-        type: 'input',
-        name: 'officeNumber',
-        message: "What is your Office number?",
-    },
+  
     {
         type: "list",
         name:"adding",
         message:"Do you want to someone else?",
         choices:["Yes", "No"],
     }
-    ])
-    
+    ]);
     if( role === "Manager" ){
         team.push( new Manager(name, id,email, officeNumber, ))
 
@@ -78,10 +73,11 @@ async function startProgram() {
 
     }
 
-    let htmlDoc = render(team)
-    await fs.writeFile(outputPath, htmlDoc)
-
+    
     if (adding=== "Yes"){
         return startProgram()
     }
+    else{
+    let htmlDoc = render(team)
+    await fs.writeFile(outputPath, htmlDoc)}
 }
