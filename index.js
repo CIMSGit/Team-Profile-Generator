@@ -19,7 +19,7 @@ startProgram();
 
 
 async function startProgram() {
-    let {role,name,id,email,github,School,officeNumber}= await inquirer
+    let {role,name,id,email,github,School,officeNumber,adding}= await inquirer
     .prompt([    {
         type: 'list',
         name: 'role',
@@ -55,7 +55,14 @@ async function startProgram() {
         name: 'officeNumber',
         message: "What is your Office number?",
     },
+    {
+        type: "list",
+        name:"adding",
+        message:"Do you want to someone else?",
+        choices:["Yes", "No"],
+    }
     ])
+    
     if( role === "Manager" ){
         team.push( new Manager(name, id,email, officeNumber, ))
 
@@ -67,8 +74,14 @@ async function startProgram() {
     }
     if (role === "Engineer")
     team.push(new Engineer(name, id,email, role, github));
+    if (team.push === true ){
+
+    }
 
     let htmlDoc = render(team)
     await fs.writeFile(outputPath, htmlDoc)
 
+    if (adding=== "Yes"){
+        return startProgram()
+    }
 }
