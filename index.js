@@ -20,39 +20,38 @@ startProgram();
 
 async function startProgram() {
 
+    let { nameMan, idMan, emailMan, officeNumberMan, adding } = await inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'nameMan',
+                message: "What's the Manager's name?"
+            },
 
-    let { nameMan } = await inquirer
-        .prompt([{
-            type: 'input',
-            name: 'nameMan',
-            message: "What's the Manager's name?"
-        },])
-    let { idMan } = await inquirer
-        .prompt([{
-            type: 'input',
-            name: 'idMan',
-            message: "What's the manager's ID?",
-        }])
-    let { emailMan } = await inquirer
-        .prompt([{
-            type: 'input',
-            name: 'emailMan',
-            message: "What's the Manager' email?",
-        }])
-    let { officeNumberMan } = await inquirer
-        .prompt([{
-            type: 'input',
-            name: 'officeNumberMan',
-            message: "What's the Manager's office number?"
-        },])
+            {
+                type: 'input',
+                name: 'idMan',
+                message: "What's the manager's ID?",
+            },
+            {
+                type: 'input',
+                name: 'emailMan',
+                message: "What's the Manager' email?",
+            },
+
+            {
+                type: 'input',
+                name: 'officeNumberMan',
+                message: "What's the Manager's office number?"
+            },
+
+            {
+                type: "list",
+                name: "adding",
+                message: "Do you want to add someone else?",
+                choices: ["Yes", "No"],
+            },]);
     team.push(new Manager(nameMan, idMan, emailMan, officeNumberMan))
-    let { adding } = await inquirer
-        .prompt([{
-            type: "list",
-            name: "adding",
-            message: "Do you want to add someone else?",
-            choices: ["Yes", "No"],
-        },])
     if (adding === "Yes") {
         generateNewEmployee()
     }
@@ -81,40 +80,33 @@ async function generateNewEmployee() {
     }
 }
 
-
-
-
-
-
-
 async function generateIntern() {
 
-    let { name } = await inquirer
+    let { name, id, email, school } = await inquirer
         .prompt([{
             type: 'input',
             name: 'name',
             message: "What's the Intern's name?"
-        },])
-    let { id } = await inquirer
-        .prompt([{
+        },
+
+        {
             type: 'input',
             name: 'id',
             message: "What's the Intern's id?",
-        }])
-    let { email } = await inquirer
-        .prompt([{
+        },
+
+        {
             type: 'input',
             name: 'email',
             message: "What's the Intern's email?",
-        }])
-    let { School } = await inquirer
-        .prompt([{
+        },
+        {
             type: 'input',
-            name: 'School',
+            name: 'school',
             message: "What's the Intern's School?"
         },])
 
-    team.push(new Intern(name, id, email, School));
+    team.push(new Intern(name, id, email, school));
 
     let { adding } = await inquirer
         .prompt([{
@@ -134,31 +126,29 @@ async function generateIntern() {
 
 async function generateEngineer() {
 
-
-    let { name } = await inquirer
+    let { name, id, email, github } = await inquirer
         .prompt([{
             type: 'input',
             name: 'name',
             message: "What's the Engineer's name?"
-        },])
-    let { id } = await inquirer
-        .prompt([{
+        },
+        {
             type: 'input',
             name: 'id',
             message: "What's the Engineer's id?",
-        }])
-    let { email } = await inquirer
-        .prompt([{
+        },
+
+        {
             type: 'input',
             name: 'email',
             message: "What's the Engineer's email?",
-        }])
-    let { github } = await inquirer
-        .prompt([{
+        },
+
+        {
             type: 'input',
             name: 'github',
             message: "What's the Engineer's github?"
-        }])
+        },])
 
     team.push(new Engineer(name, id, email, github))
     let { adding } = await inquirer
