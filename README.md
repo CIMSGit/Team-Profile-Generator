@@ -6,6 +6,7 @@
 - [Screenshot](#screenshot)
 - [LICENSE](#license)
 
+# Team Profile Generator
 
 ## Description
 An application giving a hand to build a professional team profile and render it to an HTML document.
